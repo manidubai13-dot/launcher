@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mani Links</title>
+<style>
+  body { margin: 0; padding: 4px; background: #fff; color: #111; font: 16px/1.2 Arial, sans-serif; }
+  h1 { font-size: 16px; margin: 2px 0 6px; }
+  a { display: block; padding: 8px 6px; margin-bottom: 4px; background: #e8eef7; color: #111;
+      text-decoration: none; border: 2px solid #e8eef7; }
+  a:focus { background: #1a4fa0; color: #fff; border-color: #000; outline: none; }
+</style>
+</head>
+<body>
+<h1>Links</h1>
+<a href="https://www.google.com" data-key="1">1 Google</a>
+<a href="https://gemini.google.com" data-key="2">2 Gemini</a>
+<a href="https://mail.google.com" data-key="3">3 Gmail</a>
+<a href="https://drive.google.com" data-key="4">4 Drive</a>
+<a href="https://web.whatsapp.com" data-key="5">5 WhatsApp</a>
+<a href="https://outlook.live.com/mail" data-key="6">6 Outlook</a>
+<script>
+  var links = document.querySelectorAll('a');
+  var i = 0;
+  links[0].focus();
+  document.addEventListener('keydown', function (e) {
+    var k = e.key;
+    for (var n = 0; n < links.length; n++) {
+      if (links[n].getAttribute('data-key') === k) { window.location.href = links[n].href; return; }
+    }
+    if (k === 'ArrowDown') { i = Math.min(i + 1, links.length - 1); links[i].focus(); e.preventDefault(); }
+    if (k === 'ArrowUp') { i = Math.max(i - 1, 0); links[i].focus(); e.preventDefault(); }
+    if (k === 'Enter') { window.location.href = links[i].href; }
+  });
+</script>
+</body>
+</html>
